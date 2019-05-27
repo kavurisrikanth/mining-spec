@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .Rproj.user
 
 */.idea/**
@@ -8,6 +9,10 @@
 */*.doc*
 
 instacart/data/**
+=======
+instacart/data/**
+instacart/.idea/**
+>>>>>>> parent of 673521d... Data mining for MSIT done.
 =======
 instacart/data/**
 instacart/.idea/**
