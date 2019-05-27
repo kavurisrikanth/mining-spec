@@ -39,7 +39,9 @@ def get_item_pairs(order_item):
 
 # Returns frequency and support associated with item
 def merge_item_stats(item_pairs, item_stats):
-    return (item_pairs.merge(item_stats.rename(columns={'freq': 'freqA', 'support': 'supportA'}), left_on='item_A', right_index=True).merge(item_stats.rename(columns={'freq': 'freqB', 'support': 'supportB'}), left_on='item_B', right_index=True))
+    return (item_pairs
+                .merge(item_stats.rename(columns={'freq': 'freqA', 'support': 'supportA'}), left_on='item_A', right_index=True)
+                .merge(item_stats.rename(columns={'freq': 'freqB', 'support': 'supportB'}), left_on='item_B', right_index=True))
 
 
 # Returns name associated with item
@@ -57,6 +59,7 @@ def association_rules(order_item, min_support):
     # Calculate item frequency and support
     item_stats = freq(order_item).to_frame("freq")
     print(item_stats)
+    return
     
     item_stats['support'] = item_stats['freq'] / order_count(order_item) * 100
     
@@ -115,10 +118,27 @@ def association_rules(order_item, min_support):
 # Read in data
 orders = pd.read_csv('data/instacart/order_products__prior.csv')
 
+print(size(orders))
+print(orders.shape)
+
+print(orders.head())
+
+print(orders.groupby(by=['order_id'], axis=0).head())
+
+print(orders.set_index('order_id')['product_id'].rename('item_id'))
+
 # Convert into proper format
-orders = orders.set_index('order_id')['product_id'].rename('item_id')
+orders_altered = orders.set_index('order_id')['product_id'].rename('item_id')
+
+print(orders_altered.head())
+
+# Print new size
+print('dimensions: {0};   size: {1};   unique_orders: {2};   unique_items: {3}'.format(orders.shape, size(orders), len(orders.index.unique()), len(orders.value_counts())))
   
-rules = association_rules(orders, 0.1)
+rules = association_rules(orders_altered, 0.1)
+
+print(orders[orders['order_id'] == 2])
+
 
 
 
