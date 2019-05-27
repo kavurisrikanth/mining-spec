@@ -27,7 +27,7 @@ print(df.head())
 iters = pd.Series(Counter(df['ProductID'])).to_frame('freq')
 print(iters[1])
 iters['support'] = iters['freq'] / len(df) * 100.0
-iters = iters[iters['support'] >= 0.1]
+iters = iters[iters['support'] >= 0.01]
 
 frequents = list(iters.index)
 

@@ -1,2 +1,8 @@
 instacart/data/**
 instacart/.idea/**
+.Rproj.user
+*/.idea/**
+*/*cache*
+*/*history*
+*/*R*
+*/*.doc*
