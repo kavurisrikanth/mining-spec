@@ -8,7 +8,8 @@
 */.idea/**
 */*cache*
 */*history*
-*/*R*
+*/.RData
+*/*.Rproj
 */*.doc*
 
 <<<<<<< HEAD
